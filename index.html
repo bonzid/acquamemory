@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>L'Acquamemory</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap">
+        <link rel="stylesheet" type="text/css" href="https://fonts.cdnfonts.com/css/arquitecta">
+		<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+	</head>
+	
+	<body>
+		<section class="heading">
+			<img id="titrage" src="images/titre.png" alt="acquamemory">
+			<link rel="icon" type="images/logo.png" href="images/logo.png">
+			<header>Venez tester vos connaissances en italien !</header>
+		</section>
+		
+		<h1>Bienvenue sur l'Acquamemory</h1>
+		<p id="intro">Cherchez et apprenez le vocabulaire italien en associant <b>les noms d'animaux marins</b> aux <b>images correspondantes</b>.<br> Cherchez, trouvez les paires en cliquant sur les cartes et amusez-vous
+		à enrichir vos connaissances !<br></p>
+		
+		<nav class="liens">
+			<a href="regles.html" target="_blank">Règles du jeu</a>
+			<a href="index.html">Retour à l'accueil</a>
+		</nav>
+			
+		<h2>Qui joue ?</h2>
+		<p id="choix">Nom du premier joueur : <input type="text" id="nom1"></p>
+		<p id="choix">Nom du second joueur : <input type="text" id="nom2"></p>
+			
+			
+		<h2>Choix de la difficulté</h2>
+		<p id="choix">
+			<input type="radio" value="debutant" name="difficulte"/>Débutant<br>
+			<input type="radio" value="intermediaire" name="difficulte"/>Intermédiaire<br>
+			<input type="radio" value="expert" name="difficulte"/>Expert<br>
+		</p>
+		
+		<p><button id="start">Commencer le jeu</button></p>
+		
+		<!-- Jeu du mémory : les cartes -->
+		<!-- Pour chaque difficulté, on a  une div "jeu" divisée en deux div : annonce_score et memory -->
+		
+		<!-- Débutant 4x3 -->
+		<div class="jeu">
+			<aside class="annonce_score" id="annoncescoredebutant">
+				<!-- Ici on annonce à qui le tour et on affiche les scores -->
+				<p id="score">A ton tour <b><span id="joueuractuel_lvl1">joueur</span></b> ! </p>
+				<p id="score">Score de <b><span id="joueur1label_lvl1">nom1</span></b><span id="scorenom1_lvl1">0</span></p>
+				<p id="score">Score de <b><span id="joueur2label_lvl1">nom2</span></b><span id="scorenom2_lvl1">0</span></p>
+			</aside>
+			<div class="memory" id="memorydebutant">
+				<table>
+					<!-- Ici on affiche les cartes -->
+					<!-- Les "id" uniques sur chaque carte sont les vestiges d'une tentative de JS qui a été "optimisée" depuis lors -->
+					<!-- Changement de mise en page qd suppression "id=verso..." -->
+					
+					<!-- Chaque recto est associé à la même classe que sa paire; ce qui nous servira pour comparer les cartes pdt le jeu -->
+					<tr>
+						<td><img src="images/recto.png" class="rectobalena" id="recto1deb">
+						<img src="images/1balena.png" class="versobalena" id="verso1deb"></td>
+						<td><img src="images/recto.png" class="rectosquallo">
+						<img src="images/2squallo.png" class="versosquallo" id="verso2deb"></td>
+						<td><img src="images/recto.png" class="rectopolpo" id="recto3deb">
+						<img src="images/2polpo.png" class="versopolpo" id="verso3deb"></td>
+						<td><img src="images/recto.png" class="rectosquallo" id="recto4deb">
+						<img src="images/1squallo.png" class="versosquallo" id="verso4deb"></td>
+					</tr>	
+					<tr>
+						<td><img src="images/recto.png" class="rectoorca" id="recto5deb">
+						<img src="images/2orca.png" class="versoorca" id="verso5deb"></td>
+						<td><img src="images/recto.png" class="rectorazza" id="recto6deb">
+						<img src="images/1razza.png" class="versorazza" id="verso6deb"></td>
+						<td><img src="images/recto.png" class="rectopolpo" id="recto7deb">
+						<img src="images/1polpo.png" class="versopolpo" id="verso7deb"></td>
+						<td><img src="images/recto.png" class="rectoaragosta" id="recto8deb">
+						<img src="images/2aragosta.png" class="versoaragosta" id="verso8deb"></td>
+					</tr>
+					<tr>
+						<td><img src="images/recto.png" class="rectoaragosta" id="recto9deb">
+						<img src="images/1aragosta.png" class="versoaragosta" id="verso9deb"></td>
+						<td><img src="images/recto.png" class="rectoorca" id="recto10deb">
+						<img src="images/1orca.png" class="versoorca" id="verso10deb"></td>
+						<td><img src="images/recto.png" class="rectobalena" class="cartes" id="recto11deb">
+						<img src="images/2balena.png" class="versobalena" id="verso11deb"></td>
+						<td><img src="images/recto.png" class="rectorazza" id="recto12deb">
+						<img src="images/2razza.png" class="versorazza" id="verso12deb"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<!-- Intermédiaire 5x4 -->
+		<div class="jeu">
+			<aside class="annonce_score" id="annoncescoreintermediaire">
+				<p id="score">A ton tour <b><span id="joueuractuel_lvl2">joueur</span></b> !</p>
+				<p id="score">Score de <b><span id="joueur1label_lvl2">nom1</span></b><span id="scorenom1_lvl2">0</span></p>
+				<p id="score">Score de <b><span id="joueur2label_lvl2">nom2</span></b><span id="scorenom2_lvl2">0</span></p>
+			</aside>
+			
+			<div class="memory" id="memoryintermediaire">
+				<table>
+					<tr>
+						<td><img src="images/recto.png" class="rectobalena" id="recto1in">
+						<img src="images/1balena.png" class="versobalena" id="verso1in"></td>
+						<td><img src="images/recto.png" class="rectosquallo" id="recto2in">
+						<img src="images/2squallo.png" class="versosquallo" id="verso2in"></td>
+						<td><img src="images/recto.png" class="rectopolpo" id="recto3in">
+						<img src="images/2polpo.png" class="versopolpo" id="verso3in"></td>
+						<td><img src="images/recto.png" class="rectosquallo" id="recto4in">
+						<img src="images/1squallo.png" class="versosquallo" id="verso4in"></td>
+						<td><img src="images/recto.png" class="rectoorca" id="recto5in">
+						<img src="images/2orca.png" class="versoorca" id="verso5in"></td>
+					</tr>	
+					<tr>
+						<td><img src="images/recto.png" class="rectopinguino" id="recto6in">
+						<img src="images/1pinguino.png" class="versopinguino" id="verso6in"></td>
+						<td><img src="images/recto.png" class="rectopinguino" id="recto7in">
+						<img src="images/2pingouino.png" class="versopinguino" id="verso7in"></td>
+						<td><img src="images/recto.png" class="rectopolpo" id="recto8in">
+						<img src="images/1polpo.png" class="versopolpo" id="verso8in"></td>
+						<td><img src="images/recto.png" class="rectorazza" id="recto9in">
+						<img src="images/2razza.png" class="versorazza" id="verso9in"></td>
+						<td><img src="images/recto.png" class="rectoorca" id="recto10in">
+						<img src="images/1orca.png" class="versoorca" id="verso10in"></td>
+					</tr>	
+					<tr>
+						<td><img src="images/recto.png" class="rectomedusa" id="recto11in">
+						<img src="images/2medusa.png" class="versomedusa" id="verso11in"></td>
+						<td><img src="images/recto.png" class="rectoaragosta" id="recto12in">
+						<img src="images/1aragosta.png" class="versoaragosta" id="verso12in"></td>
+						<td><img src="images/recto.png" class="rectotrota" id="recto13in">
+						<img src="images/1trota.png" class="versotrota" id="verso13in"></td>
+						<td><img src="images/recto.png" class="rectobalena" id="recto14in">
+						<img src="images/2balena.png" class="versobalena" id="verso14in"></td>
+						<td><img src="images/recto.png" class="rectofoca" id="recto15in">
+						<img src="images/1foca.png" class="versofoca" id="verso15in"></td>
+					</tr>	
+					<tr>
+						<td><img src="images/recto.png" class="rectoaragosta" id="recto16in">
+						<img src="images/2aragosta.png" class="versoaragosta" id="verso16in"></td>
+						<td><img src="images/recto.png" class="rectofoca" id="recto17in">
+						<img src="images/2foca.png" class="versofoca" id="verso17in"></td>
+						<td><img src="images/recto.png" class="rectorazza" id="recto18in">
+						<img src="images/1razza.png" class="versorazza" id="verso18in"></td>
+						<td><img src="images/recto.png" class="rectomedusa" id="recto19in">
+						<img src="images/1medusa.png" class="versomedusa" id="verso19in"></td>
+						<td><img src="images/recto.png" class="rectotrota" id="recto20in">
+						<img src="images/2trota.png" class="versotrota" id="verso20in"></td>
+					</tr>	
+				</table>
+			</div>
+		</div>
+		
+		<!-- Expert 6x6 -->
+		<div class="jeu">
+			<aside class="annonce_score" id="annoncescoreexpert">
+				<p id="score">A ton tour <b><span id="joueuractuel_lvl3">joueuractuel</span></b> ! </p>
+				<p id="score">Score de <b><span id="joueur1label_lvl3">nom1</span></b><span id="scorenom1_lvl3">0</span></p>
+				<p id="score">Score de <b><span id="joueur2label_lvl3">nom2</span></b><span id="scorenom2_lvl3">0</span></p>
+			</aside>
+			
+			<div class="memory" id="memoryexpert">
+				<table>
+					<tr>
+						<td><img src="images/recto.png" class="rectotrota">
+						<img src="images/2trota.png" class="versotrota" id="verso1ex"></td>
+						<td><img src="images/recto.png" class="rectogranchio" id="recto2ex">
+						<img src="images/1granchio.png" class="versogranchio" id="verso2ex"></td>
+						<td><img src="images/recto.png" class="rectotricheco" id="recto3ex">
+						<img src="images/1tricheco.png" class="versotricheco" id="verso3ex"></td>
+						<td><img src="images/recto.png" class="rectotonno" id="recto4ex">
+						<img src="images/1tonno.png" class="versotonno" id="verso4ex"></td>
+						<td><img src="images/recto.png" class="rectosquallo" id="recto5ex">
+						<img src="images/2squallo.png" class="versosquallo" id="verso5ex"></td>
+						<td><img src="images/recto.png" class="rectorazza" id="recto6ex">
+						<img src="images/2razza.png" class="versorazza" id="verso6ex"></td>
+					</tr>	
+					<tr>
+						<td><img src="images/recto.png" class="rectopolpo" id="recto7ex">
+						<img src="images/2polpo.png" class="versopolpo" id="verso7ex"></td>
+						<td><img src="images/recto.png" class="rectopinguino" id="recto8ex">
+						<img src="images/2pingouino.png" class="versopinguino" id="verso8ex"></td>
+						<td><img src="images/recto.png" class="rectopescespada" id="recto9ex">
+						<img src="images/1pescespada.png" class="versopescespada" id="verso9ex"></td>
+						<td><img src="images/recto.png" class="rectoorca" id="recto10ex">
+						<img src="images/1orca.png" class="versoorca" id="verso10ex"></td>
+						<td><img src="images/recto.png" class="rectocorallo" id="recto11ex">
+						<img src="images/2corallo.png" class="versocorallo" id="verso11ex"></td>
+						<td><img src="images/recto.png" class="rectotricheco" id="recto12ex">
+						<img src="images/2tricheco.png" class="versotricheco" id="verso12ex"></td>
+					</tr>		
+					<tr>
+						<td><img src="images/recto.png" class="rectomedusa" id="recto13ex">
+						<img src="images/2medusa.png" class="versomedusa" id="verso13ex"></td>
+						<td><img src="images/recto.png" class="rectogranchio" id="recto14ex">
+						<img src="images/2granchio.png" class="versogranchio" id="verso14ex"></td>
+						<td><img src="images/recto.png" class="rectoorca" id="recto15ex">
+						<img src="images/2orca.png" class="versoorca" id="verso15ex"></td>
+						<td><img src="images/recto.png" class="rectomedusa" id="recto16ex">
+						<img src="images/1medusa.png" class="versomedusa" id="verso16ex"></td>
+						<td><img src="images/recto.png" class="rectolontra" id="recto17ex">
+						<img src="images/1lontra.png" class="versolontra" id="verso17ex"></td>
+						<td><img src="images/recto.png" class="rectotonno" id="recto18ex">
+						<img src="images/2tonno.png" class="versotonno" id="verso18ex"></td>
+					</tr>	
+					<tr>
+						<td><img src="images/recto.png" class="rectofoca" id="recto19ex">
+						<img src="images/1foca.png" class="versofoca" id="verso19ex"></td>
+						<td><img src="images/recto.png" class="rectodelfino" id="recto20ex">
+						<img src="images/2delfino.png" class="versodelfino" id="verso20ex"></td>
+						<td><img src="images/recto.png" class="rectocozza" id="recto21ex">
+						<img src="images/1cozza.png" class="versocozza" id="verso21ex"></td>
+						<td><img src="images/recto.png" class="rectotrota" id="recto22ex">
+						<img src="images/1trota.png" class="versotrota" id="verso22ex"></td>
+						<td><img src="images/recto.png" class="rectofoca" id="recto23ex">
+						<img src="images/2foca.png" class="versofoca" id="verso23ex"></td>
+						<td><img src="images/recto.png" class="rectopescespada" id="recto24ex">
+						<img src="images/2pescespada.png" class="versopescespada" id="verso24ex"></td>
+					</tr>	
+					<tr>
+						<td><img src="images/recto.png" class="rectodelfino" id="recto25ex">
+						<img src="images/1delfino.png" class="versodelfino" id="verso25ex"></td>
+						<td><img src="images/recto.png" class="rectocapodoglio" id="recto26ex">
+						<img src="images/1capodoglio.png" class="versocapodoglio" id="verso26ex"></td>
+						<td><img src="images/recto.png" class="rectorazza" id="recto27ex">
+						<img src="images/1razza.png" class="versorazza" id="verso27ex"></td>
+						<td><img src="images/recto.png" class="rectolontra" id="recto28ex">
+						<img src="images/2lontra.png" class="versolontra" id="verso28ex"></td>
+						<td><img src="images/recto.png" class="rectogambero" id="recto29ex">
+						<img src="images/1gambero.png" class="versogambero" id="verso29ex"></td>
+						<td><img src="images/recto.png" class="rectopolpo" id="recto30ex">
+						<img src="images/1polpo.png" class="versopolpo" id="verso30ex"></td>
+					</tr>	
+					<tr>
+						<td><img src="images/recto.png" class="rectocapodoglio" id="recto31ex">
+						<img src="images/2capodoglio.png" class="versocapodoglio" id="verso31ex"></td>
+						<td><img src="images/recto.png" class="rectocorallo" id="recto32ex">
+						<img src="images/1corallo.png" class="versocorallo" id="verso32ex"></td>
+						<td><img src="images/recto.png" class="rectosquallo" id="recto33ex">
+						<img src="images/1squallo.png" class="versosquallo" id="verso33ex"></td>
+						<td><img src="images/recto.png" class="rectocozza" id="recto34ex">
+						<img src="images/2cozza.png" class="versocozza" id="verso34ex"></td>
+						<td><img src="images/recto.png" class="rectopinguino" id="recto35ex">
+						<img src="images/1pinguino.png" class="versopinguino" id="verso35ex"></td>
+						<td><img src="images/recto.png" class="rectogambero" id="recto36ex">
+						<img src="images/2gambero.png" class="versogambero" id="verso36ex"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+        
+	<script>
+	//On cache le jeu du mémory et on initie nos variables
+	$(".memory").hide();
+	$(".annonce_score").hide();
+	var nom1,nom2;
+	var scorenom1=0;
+	var scorenom2=0;
+	var joueuractuel="nom1";
+	var pairesatrouver;
+			
+	$("#start").on("click", function(){
+		//Les noms sont-ils écrits ? La difficulté est-elle sélectionnée ?
+		nom1=$("#nom1").val();
+		nom2=$("#nom2").val();
+		var difficulte=$("input[type=radio][name=difficulte]:checked").val();
+				
+		//Si au moins un nom est manquant
+		if (nom1==""||nom2==""){
+			alert("Veuillez entrer le nom des joueurs.");
+			console.log("Manque un ou plusieurs noms de joueurs")
+		}
+		//Si la difficulté n'est pas sélectionnée
+		else if (difficulte==undefined){
+			alert("Veuillez sélectionner une difficulté.");
+			console.log("Pas de difficulté sélectionnée")
+		}
+		
+		//si rien ne manque, alors:
+		else {
+			console.log("Noms des joueurs :", nom1, nom2)
+			console.log("Difficulté sélectionnée :", difficulte) 
+		//On masque ces éléments puis on affiche le jeu selon la difficulté
+			$("h1").hide();
+			$("h2").hide();
+			$("#choix, #intro").hide();
+			$(".heading").hide();
+			$("#start").hide();
+			$("#intro").hide();
+			$("[id^='verso']").hide();
+
+			$("#memory"+difficulte).show();
+			$("#annoncescore"+difficulte).show();
+			
+			//On met en place la variable "pairesatrouver" qui nous aidera détecter la fin du jeu
+			if (difficulte=="debutant") {
+				pairesatrouver=6
+			}
+			if (difficulte=="intermediaire") {
+				pairesatrouver=10
+			}
+			if (difficulte=="expert") {
+				pairesatrouver=18
+			}
+			console.log("Nombre de paires à trouver :",pairesatrouver)
+
+			//Pour afficher les scores et noms pdt le jeu
+			$("#scorenom1_lvl1").text(" : "+scorenom1);
+			$("#scorenom2_lvl1").text(" : "+scorenom2);
+			$("#joueuractuel_lvl1").text(nom1);
+			$("#joueur1label_lvl1").text(nom1);
+			$("#joueur2label_lvl1").text(nom2);				
+			
+			$("#scorenom1_lvl2").text(" : "+scorenom1);
+			$("#scorenom2_lvl2").text(" : "+scorenom2);
+			$("#joueuractuel_lvl2").text(nom1);
+			$("#joueur1label_lvl2").text(nom1);
+			$("#joueur2label_lvl2").text(nom2);
+
+			$("#scorenom1_lvl3").text(" : "+scorenom1);
+			$("#scorenom2_lvl3").text(" : "+scorenom2);
+			$("#joueuractuel_lvl3").text(nom1);
+			$("#joueur1label_lvl3").text(nom1);
+			$("#joueur2label_lvl3").text(nom2);
+				
+			
+			//Retourner deux cartes (seulement)
+			var carteretournee1=null;
+			var carteretournee2=null;
+
+			$("[class^='recto']").on("click", function(){
+				var cartecliquee=$(this);
+
+				//Vérifier si la carte est déjà retournée ou si deux cartes sont déjà retournées
+				if (!cartecliquee.hasClass("retournee")&&(carteretournee1==null||carteretournee2==null)){
+					//On retourne la carte
+					cartecliquee.hide();
+					cartecliquee.next().show();
+
+					//On enregistre la carte retournée
+					if (carteretournee1==null){
+						carteretournee1=cartecliquee;
+					} 
+					else {
+						carteretournee2=cartecliquee;
+
+						//On compare les cartes avec un petit temps pour montrer aux joueurs 
+						setTimeout(function () {
+							comparercartes();
+						}, 1000);
+					}
+				}
+			});
+
+			function comparercartes(){
+				//Ici on récupère les classes des cartes retournées pour comparer leurs valeurs :
+				var classescarte1=carteretournee1.attr('class');
+				var classescarte2=carteretournee2.attr('class');
+				
+				console.log("Classe carte 1 : " + classescarte1);
+				console.log("Classe carte 2 : " + classescarte2);
+				
+				if (classescarte1==classescarte2){
+					//Si elles correspondent, on les laisse face visible (on ne les retourne pas)
+					console.log("Les cartes correspondent");
+					carteretournee1=null;
+					carteretournee2=null;
+					
+					//Joueur 1 trouve une paire, on augmente son score : 
+					if (joueuractuel=="nom1") {
+						scorenom1+=1;
+						//console.log("Score nom1 :", scorenom1)
+						//console.log("Score nom2 :", scorenom2)
+						
+						//On met à jour les scores
+						$("#scorenom1_lvl1").text(" : " + scorenom1);
+						$("#scorenom1_lvl2").text(" : " + scorenom1);
+						$("#scorenom1_lvl3").text(" : " + scorenom1);
+						
+						//On vérifie si le jeu n'est pas terminé (toutes les paires trouvées)
+						if ((scorenom1+scorenom2)>=pairesatrouver) {
+							//Si c'est le cas, on annonce le vainqueur
+							if (scorenom1>scorenom2) {
+								alert("Bravo "+nom1+" ! Vous avez gagné ! ☺");
+							} 
+							else if (scorenom2>scorenom1) {
+								alert("Bravo "+nom2+" ! Vous avez gagné ! ☺");
+							} 
+							else {
+								alert("Egalité !");
+							}
+						}
+
+					} 
+					
+					//Joueur 2 trouve une paire, on augmente son score :  
+					else {
+						scorenom2+=1;
+						//console.log("Score nom1 :", scorenom1)
+						//console.log("Score nom2 :", scorenom2)
+						
+						//On met à jour les scores
+						$("#scorenom2_lvl1").text(" : " + scorenom2);
+						$("#scorenom2_lvl2").text(" : " + scorenom2);
+						$("#scorenom2_lvl3").text(" : " + scorenom2);
+						
+						//On vérifie si le jeu n'est pas terminé (toutes les paires trouvées)
+						if ((scorenom1+scorenom2)>=pairesatrouver) {
+							//Si c'est le cas, on annonce le vainqueur
+							if (scorenom1>scorenom2) {
+								alert("Bravo "+nom1+" ! Vous avez gagné ! ☺");
+							} 
+							else if (scorenom2>scorenom1) {
+								alert("Bravo "+nom2+" ! Vous avez gagné ! ☺");
+							} 
+							else {
+								alert("Egalité !");
+							}
+						}
+						
+
+						
+					}
+					//Le joueur rejoue (changement de tour n'a pas lieu)
+				} 
+				
+				else {
+					//Si les cartes retournées ne correspondent pas, on les retourne à nouveau
+					console.log("Les cartes ne correspondent pas");
+					carteretournee1.show();
+					carteretournee1.next().hide();
+
+					carteretournee2.show();
+					carteretournee2.next().hide();
+					
+					//Ici changement de tour quand le joueur a échoué
+					if (joueuractuel=="nom1") {
+						joueuractuel="nom2";
+						$("#joueuractuel_lvl1").text(nom2);
+						$("#joueuractuel_lvl2").text(nom2);
+						$("#joueuractuel_lvl3").text(nom2);
+						console.log("Au tour de joueur 2");
+					} 
+					else {
+						joueuractuel="nom1";
+						$("#joueuractuel_lvl1").text(nom1);
+						$("#joueuractuel_lvl2").text(nom1);
+						$("#joueuractuel_lvl3").text(nom1);
+						console.log("Au tour de joueur 1");
+					}
+					
+					//On réinialise nos variables
+					carteretournee1=null;
+					carteretournee2=null;
+				}
+			
+			//ici fin fct comparercartes
+			}
+			
+		//ici fin de else (après vérif noms, difficulté etc)	
+		};
+					
+	//ici fin de click start
+	});
+	</script>
+	</body>
+</html>
