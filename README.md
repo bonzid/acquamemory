@@ -1,10 +1,10 @@
 Il s'agit ici de mon premier projet avec HTML, CSS et Javascript réalisé en décembre 2023. Je le partage ici sur GitHub, non pas pour sa perfection, mais pour ce qu'il représente : un souvenir précieux de mes débuts. 🌟
 
-# PROJET: L'Acquamemory
+# L'Acquamemory
 
 Réalisé dans le cadre de l'UE Programmation Web du Master 1 SdL, parcours IDL
-DATE: 13.12.2023
-NOM: BONZI Doria
+
+Date : 13.12.2023
 
 L'Acquamemory est un jeu de memory associant du vocabulaire italien à des images d'animaux marins.
 Le but du jeu est de réaliser plus de paires que son adversaire en associant une photo d'animal à sa dénomination en italien.
