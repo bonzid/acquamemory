@@ -9,6 +9,10 @@ Date : 13.12.2023
 L'Acquamemory est un jeu de memory associant du vocabulaire italien à des images d'animaux marins.
 Le but du jeu est de réaliser plus de paires que son adversaire en associant une photo d'animal à sa dénomination en italien.
 
+![Aperçu de la page d'accueil](/images/preview1.png)
+
+![Aperçu d'une partie](/images/preview2.png)
+
 ## Lancement
 
 Pour accéder à l'Acquamemory, vous pouvez ouvrir la page "index". Celle-ci vous menera sur la page d'accueil du jeu. 
